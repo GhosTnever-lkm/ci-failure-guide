@@ -1,0 +1,30 @@
+{
+  "name": "ci-failure-guide",
+  "version": "1.0.0",
+  "description": "Trace a failed build or test to the smallest evidence-backed root cause and next step.",
+  "author": {
+    "name": "GhosTnever"
+  },
+  "homepage": "https://github.com/GhosTnever-lkm/ci-failure-guide",
+  "repository": "https://github.com/GhosTnever-lkm/ci-failure-guide",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "developer-tools",
+    "ci-failure-guide"
+  ],
+  "interface": {
+    "displayName": "CI Failure Guide",
+    "longDescription": "Trace a failed build or test to the smallest evidence-backed root cause and next step.",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "developerName": "GhosTnever",
+    "shortDescription": "Trace a failed build or test to the smallest evidence-backed root cause and next step.",
+    "category": "Developer Tools"
+  },
+  "skills": [
+    "./skills/ci-failure-triage"
+  ]
+}
