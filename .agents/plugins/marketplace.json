@@ -1,0 +1,20 @@
+{
+  "name": "ci-failure-guide",
+  "interface": {
+    "displayName": "ci-failure-guide Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "ci-failure-guide",
+      "policy": {
+        "authentication": "ON_INSTALL",
+        "installation": "AVAILABLE"
+      },
+      "category": "Developer Tools",
+      "source": {
+        "source": "local",
+        "path": "./"
+      }
+    }
+  ]
+}

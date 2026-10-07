@@ -1,29 +1,26 @@
-# CI Failure Guide
+# ci-failure-guide
 
-> Trace a failed build or test to the smallest evidence-backed root cause and next step.
+> Practical, evidence-backed triage for CI, build, and test failures.
 
-## Install
+## Install in Codex
 
-In Codex, add the [GhosTnever Codex Toolkit](https://github.com/GhosTnever-lkm/ghosTnever-codex-toolkit) marketplace, then install **CI Failure Guide**.
+Add this repository as a plugin marketplace, then install the plugin:
 
-You can also clone this repository and add it as a local marketplace:
-
-```text
-codex plugin marketplace add .\path\to\ghosTnever-codex-toolkit
-codex plugin add ci-failure-guide --marketplace ghosTnever-codex-toolkit
+```powershell
+codex plugin marketplace add GhosTnever-lkm/ci-failure-guide
+codex plugin add ci-failure-guide --marketplace ci-failure-guide
 ```
 
-## Try it
+To inspect the marketplace after adding it, run codex plugin list. Codex may ask you to restart or reload plugins before the skill becomes available.
 
-- "Explain why this CI job failed and what to try next."
-- "Find the first meaningful error in this build log."
-- "Compare this failing test with the CI workflow setup."
+## Use it
+
+Start a Codex task that matches the skill's purpose. The plugin instructions live in skills/ and are included in the marketplace source for inspection.
 
 ## Scope
 
-This plugin contains a focused Codex skill. It does not install external services or run background processes. Review repository guidance and user authorization before taking actions.
+This is a focused Codex skill. It has no external service, background process, or credential requirement. See the skill file for its workflow and limits.
 
 ## License
 
 MIT. See [LICENSE](LICENSE).
-
