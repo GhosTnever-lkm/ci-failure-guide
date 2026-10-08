@@ -1,6 +1,6 @@
 {
   "name": "ci-failure-guide",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Trace a failed build or test to the smallest evidence-backed root cause and next step.",
   "author": {
     "name": "GhosTnever"
