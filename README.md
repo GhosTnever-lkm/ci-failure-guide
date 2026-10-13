@@ -7,11 +7,11 @@
 Add this repository as a plugin marketplace, then install the plugin:
 
 ```powershell
-codex plugin marketplace add GhosTnever-lkm/ci-failure-guide
+codex plugin marketplace add GhosTnever-lkm/ci-failure-guide@v1.0.2
 codex plugin add ci-failure-guide --marketplace ci-failure-guide
 ```
 
-Codex may ask you to restart or reload plugins before the skill becomes available. This release is tagged `v1.0.1`.
+The marketplace source is pinned to `v1.0.2`, so installation uses the matching tagged plugin instead of whatever is currently on the default branch. Codex may ask you to restart or reload plugins before the skill becomes available.
 
 ## Use it
 
