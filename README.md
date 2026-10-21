@@ -7,11 +7,11 @@
 Add this repository as a plugin marketplace, then install the plugin:
 
 ```powershell
-codex plugin marketplace add GhosTnever-lkm/ci-failure-guide@v1.0.2
+codex plugin marketplace add GhosTnever-lkm/ci-failure-guide@v1.0.3
 codex plugin add ci-failure-guide --marketplace ci-failure-guide
 ```
 
-The marketplace source is pinned to `v1.0.2`, so installation uses the matching tagged plugin instead of whatever is currently on the default branch. Codex may ask you to restart or reload plugins before the skill becomes available.
+The marketplace source is pinned to `v1.0.3`, so installation uses the matching tagged plugin instead of whatever is currently on the default branch. Codex may ask you to restart or reload plugins before the skill becomes available.
 
 ## Use it
 
@@ -28,3 +28,14 @@ CI Failure Guide is free and open source. There is no paid Pro edition at this t
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Development
+
+The repository includes a dependency-free consistency check (Node.js 20 or newer):
+
+```sh
+node scripts/validate.mjs   # VERSION, manifest, skills, marketplace, README pin, CHANGELOG, LICENSE
+node --test test/           # validator tests
+```
+
+CI runs both commands on Ubuntu and Windows for every push, tag, and pull request.
