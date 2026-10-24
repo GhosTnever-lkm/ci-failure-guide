@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -48,6 +48,30 @@ test('rejects skill paths outside the repository', () => withCopy((dir) => {
   edit(dir, '.codex-plugin/plugin.json', (t) => { const j = JSON.parse(t); j.skills = ['../outside']; return JSON.stringify(j); });
   assert.ok(codes(validate(dir)).includes('SKILL_PATH'));
 }));
+
+test('rejects a skill directory symlink that resolves outside the repository', (t) => {
+  const temp = mkdtempSync(path.join(tmpdir(), 'ci-guide-symlink-'));
+  try {
+    const project = path.join(temp, 'project');
+    const outside = path.join(temp, 'outside', 'ci-failure-triage');
+    cpSync(root, project, { recursive: true, filter: source => !source.includes(`${path.sep}.git`) });
+    mkdirSync(outside, { recursive: true });
+    writeFileSync(path.join(outside, 'SKILL.md'), '---\nname: ci-failure-triage\ndescription: external skill\n---\n');
+    rmSync(path.join(project, 'skills', 'ci-failure-triage'), { recursive: true, force: true });
+    try {
+      symlinkSync(outside, path.join(project, 'skills', 'ci-failure-triage'), 'junction');
+    } catch (error) {
+      if (process.platform === 'win32' && ['EPERM', 'EACCES'].includes(error.code)) {
+        t.skip(`Creating a directory symlink is not permitted: ${error.code}`);
+        return;
+      }
+      throw error;
+    }
+    assert.ok(codes(validate(project)).includes('SKILL_PATH'));
+  } finally {
+    rmSync(temp, { recursive: true, force: true });
+  }
+});
 
 test('rejects invalid JSON and missing files without crashing', () => withCopy((dir) => {
   edit(dir, '.agents/plugins/marketplace.json', () => '{ not json');

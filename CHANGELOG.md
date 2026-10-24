@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Resolve skill directory and `SKILL.md` paths before accepting them, rejecting symlinks that escape the repository root.
+
 ## v1.0.3
 
 - Add a dependency-free `scripts/validate.mjs` check for VERSION, plugin manifest, skill frontmatter, marketplace entry, README install pin, CHANGELOG entry, and full MIT license text.
