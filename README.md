@@ -38,4 +38,4 @@ node scripts/validate.mjs   # VERSION, manifest, skills, marketplace, README pin
 node --test                 # validator tests (auto-discovers test/*.test.mjs)
 ```
 
-CI runs both commands on Ubuntu and Windows for every push, tag, and pull request.
+CI runs both commands on Ubuntu and Windows for pushes to `main`, version tags matching `v*`, and every pull request.
