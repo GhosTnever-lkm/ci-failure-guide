@@ -31,6 +31,17 @@ test('this repository passes its own plugin checks', () => {
   assert.equal(r.ok, true);
 });
 
+test('README CI triggers and immutable action pins match the workflow', () => {
+  const workflow = readFileSync(path.join(root, '.github/workflows/ci.yml'), 'utf8');
+  const readme = readFileSync(path.join(root, 'README.md'), 'utf8');
+
+  assert.match(workflow, /push:\s*\n\s+branches:\s*\[main\]\s*\n\s+tags:\s*\[['"]v\*['"]\]/);
+  assert.match(workflow, /pull_request:/);
+  assert.match(workflow, /uses:\s*actions\/checkout@[a-f0-9]{40}\s+# actions\/checkout v\d/);
+  assert.match(workflow, /uses:\s*actions\/setup-node@[a-f0-9]{40}\s+# actions\/setup-node v\d/);
+  assert.match(readme, /pushes to `main`, version tags matching `v\*`, and every pull request/);
+});
+
 test('detects manifest version drift', () => withCopy((dir) => {
   edit(dir, 'VERSION', () => '9.9.9\n');
   const c = codes(validate(dir));

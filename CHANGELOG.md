@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Pin GitHub Actions to verified immutable commits and disable persisted checkout credentials in CI.
+- Clarify that CI runs on `main` and `v*` tag pushes, plus pull requests.
+- Add a regression test for the documented CI triggers and action pins.
+
 - Resolve skill directory and `SKILL.md` paths before accepting them, rejecting symlinks that escape the repository root.
 
 ## v1.0.3
